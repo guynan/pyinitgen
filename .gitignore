@@ -1,0 +1,10 @@
+
+# Potential test files
+*.pyc
+*.py
+
+# Potential object files
+*.o
+*.so
+pyinitgen
+
