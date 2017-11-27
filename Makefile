@@ -7,19 +7,19 @@ CFLAGS = -Wall -Werror -Wextra -pedantic -std=c99
 LDFLAGS = 
 SRC = pyinitgen.c
 
+INSTALL_PREFIX = /usr/local/bin
+
+NO_COMPILER_BUILD = $(CFLAGS) $(SRC) -o $(OUT) $(LDFLAGS)
+
 OUT = pyinitgen
 
 DEBUG = 1
-
-ifneq ($(DEBUG), 1)
-	CFLAGS += -O2
-endif
-
 
 all: build-init
 
 build-init:
 	@$(CC) $(CFLAGS) $(SRC) -o $(OUT) $(LDFLAGS)
+
 
 test: build-init
 	@ls | xargs ./$(OUT)
@@ -29,5 +29,9 @@ clean:
 	rm -rf *.o $(OUT) __init__.py
 
 install: build-init
-	mkdir -p /usr/local/src/
-	cp $(OUT) /usr/local/src/
+	mkdir -p $(INSTALL_PREFIX)
+	cp $(OUT) $(INSTALL_PREFIX)
+
+clang:
+	clang $(NO_COMPILER_BUILD)
+
