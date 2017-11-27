@@ -5,7 +5,7 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic -std=c99
 LDFLAGS = 
-SRC = initGen.c
+SRC = pyinitgen.c
 
 OUT = pyinitgen
 
